@@ -17,6 +17,10 @@ strong {
    padding: 1rem;
 }
 
+button {
+   padding: 0.5rem 1rem;
+}
+
 #app_main {
    height: 100vh;
 }
@@ -29,6 +33,7 @@ strong {
 
    /* flex */
    display: flex;
+   flex-direction: column;
    justify-content: center;
    align-items: center;
 }
