@@ -16,12 +16,6 @@ const btnElement = document.getElementById('submit');
 //creo un array che contiene i numeri randomici
 let randomNumbers = [];
 
-// preparo l'array per i numeri inseriti dall'utente
-let userNums = [];
-
-// creo un array che contiene i numeri corretti
-let rightNumbers = [];
-
 const numbers = generateNumbers();
 
 const numsTimeout = setTimeout(hideNums, 10000)
@@ -68,7 +62,13 @@ function showForm() {
 
 // funzione input
 function inputControl() {
+   // preparo l'array per i numeri inseriti dall'utente
+   let userNums = [];
+
+   // creo un array che contiene i numeri corretti
+   let rightNumbers = [];
    btnElement.addEventListener('click', () => {
+
       let userNum = Number(document.querySelector('input').value);
       userNums.push(userNum);
       document.querySelector('input').value = ''
@@ -77,9 +77,15 @@ function inputControl() {
          rightNumbers.push(userNum);
       }
 
-      if (userNums.length >= 5) {
+      console.log(userNums);
+
+      if (randomNumbers.length == rightNumbers.length) {
+         alert('CONGRATULATIONS!!!!   You found all numbers')
+
+      } else if (userNums.length >= 5) {
          alert(`Rigth numbers: ${rightNumbers} SCORE: ${rightNumbers.length}`)
       }
+
    })
 }
 
