@@ -10,10 +10,12 @@ const numbersEl = document.querySelector('.numbers')
 // seleziono il form nel DOM
 const formElement = document.querySelector('form')
 
-generateNumbers();
+const numbers = generateNumbers();
 
 const numsTimeout = setTimeout(hideNums, 10000)
 const formTimeout = setTimeout(showForm,10050)
+
+checkUserInput(formElement, numbers)
 
 
 
@@ -50,6 +52,41 @@ function hideNums() {
 function showForm(){
    formElement.classList.remove('d_none')
 }
+
+
+
+
+
+
+
+// funzione che controlla gli input
+function checkUserInput(form, randomNums) {
+   form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const rightNums = [];
+
+      for ( let i = 0; i < 5; i ++){
+
+         if (randomNums.icludes(e.target[i])){
+            rightNums.push(e.target[i]);
+         }
+      }
+   })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function getRandomInteger(min, max) {
