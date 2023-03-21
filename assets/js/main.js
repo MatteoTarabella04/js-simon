@@ -4,12 +4,16 @@ Dopo 30 secondi i numeri scompaiono e l'utente deve inserire, uno alla volta, i 
 Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 */
 
-// seleziono l'elemento con classe 'container' nel DOM
+// seleziono l'elemento con classe 'numbers' nel DOM
 const numbersEl = document.querySelector('.numbers')
+
+// seleziono il form nel DOM
+const formElement = document.querySelector('form')
 
 generateNumbers();
 
-const numsTimeout = setTimeout(hideNums, 30000)
+const numsTimeout = setTimeout(hideNums, 10000)
+const formTimeout = setTimeout(showForm,10050)
 
 
 
@@ -40,6 +44,11 @@ function generateNumbers() {
 // funzione che nasconde i numeri
 function hideNums() {
    numbersEl.classList.add('d_none')
+}
+
+// funzione che visuualizza il form
+function showForm(){
+   formElement.classList.remove('d_none')
 }
 
 
