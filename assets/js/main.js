@@ -8,14 +8,28 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 const numbersEl = document.querySelector('.numbers')
 
 // seleziono il form nel DOM
-const formElement = document.querySelector('form')
+const formElement = document.querySelector('.form')
+
+// seleziono il bottone dal DOM
+const btnElement = document.getElementById('submit');
+
+//creo un array che contiene i numeri randomici
+let randomNumbers = [];
+
+// preparo l'array per i numeri inseriti dall'utente
+let userNums = [];
+
+// creo un array che contiene i numeri corretti
+let rightNumbers = [];
 
 const numbers = generateNumbers();
 
 const numsTimeout = setTimeout(hideNums, 10000)
-const formTimeout = setTimeout(showForm,10050)
+const formTimeout = setTimeout(showForm, 10050)
 
-checkUserInput(formElement, numbers)
+inputControl();
+
+//checkUserInput(formElement, numbers)
 
 
 
@@ -23,19 +37,16 @@ checkUserInput(formElement, numbers)
 // genera 5 numeri casuali
 function generateNumbers() {
 
-   //creo un array che contiene i numeri randomici
-   const randomNumbers = [];
-
    //eseguo un ciclo for per riempire l'array e creare 5 elementi che contengono i numeri generati
    for (let i = 0; i < 5; i++) {
 
       let randomNum = getRandomInteger(100, 1);
 
-      while (randomNumbers.includes(randomNum)){
+      while (randomNumbers.includes(randomNum)) {
          randomNum = getRandomInteger(100, 1);
       }
       randomNumbers.push(randomNum);
-      
+
       const strongEl = `<strong>${randomNumbers[i]}</strong>`;
       numbersEl.insertAdjacentHTML('beforeend', strongEl);
 
@@ -49,45 +60,28 @@ function hideNums() {
 }
 
 // funzione che visuualizza il form
-function showForm(){
+function showForm() {
    formElement.classList.remove('d_none')
 }
 
 
 
+// funzione input
+function inputControl() {
+   btnElement.addEventListener('click', () => {
+      let userNum = Number(document.querySelector('input').value);
+      userNums.push(userNum);
+      document.querySelector('input').value = ''
 
+      if (randomNumbers.includes(userNum)) {
+         rightNumbers.push(userNum);
+      }
 
-
-
-// funzione che controlla gli input
-function checkUserInput(form, randomNums) {
-   form.addEventListener('submit', (e) => {
-         e.preventDefault();
-
-         const rightNums = [];
-
-         for (let i = 0; i < 5; i++) {
-
-            if (randomNums.icludes(e.target[i])) {
-               rightNums.push(e.target[i]);
-            }
-         }
-      })
+      if (userNums.length >= 5) {
+         alert(`Rigth numbers: ${rightNumbers} SCORE: ${rightNumbers.length}`)
+      }
+   })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function getRandomInteger(min, max) {
    return Math.floor(Math.random() * (max - min + 1)) + min;
