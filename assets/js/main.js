@@ -61,18 +61,18 @@ function showForm(){
 
 // funzione che controlla gli input
 function checkUserInput(form, randomNums) {
-   form.addEventListener('submit', function (e) {
-      e.preventDefault();
+   form.addEventListener('submit', (e) => {
+         e.preventDefault();
 
-      const rightNums = [];
+         const rightNums = [];
 
-      for ( let i = 0; i < 5; i ++){
+         for (let i = 0; i < 5; i++) {
 
-         if (randomNums.icludes(e.target[i])){
-            rightNums.push(e.target[i]);
+            if (randomNums.icludes(e.target[i])) {
+               rightNums.push(e.target[i]);
+            }
          }
-      }
-   })
+      })
 }
 
 
