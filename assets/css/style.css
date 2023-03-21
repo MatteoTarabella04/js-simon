@@ -33,4 +33,8 @@ strong {
    align-items: center;
 }
 
+.d_none {
+   display: none;
+}
+
 
